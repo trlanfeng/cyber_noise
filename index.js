@@ -15,16 +15,29 @@ function main() {
 }
 
 function log() {
+  let y = 0;
+  for (let i = 0, len = 30; i < len; i += 5) {
+    y++;
+    offset(10 + y, i);
+  }
+  y = 0;
+  for (let i = 0, len = 30; i < len; i += 2) {
+    y++;
+    offset(5 + y, i);
+  }
+}
+
+function offset(y, offset_x) {
   var newArray = new Uint8ClampedArray(500 * 4);
-  var imageData = ctx.getImageData(0, 20, 500, 1);
+  var imageData = ctx.getImageData(0, y, 500, 1);
   console.log('TR: log -> imageData', imageData);
   // 左5
-  newArray.set(imageData.data.slice(100 * 4));
-  newArray.fill(0, (500 - 100) * 4);
+  newArray.set(imageData.data.slice(offset_x * 4));
+  newArray.fill(0, (500 - offset_x) * 4);
   console.log('TR: log -> newArray', newArray);
-  // var newImageData = new ImageData(newArray, 500, 1);
-  imageData.data = newArray;
-  ctx.putImageData(imageData, 0, 20);
+  var newImageData = new ImageData(newArray, 500, 1);
+  console.log('TR: log -> newImageData', newImageData);
+  ctx.putImageData(newImageData, 0, y);
 }
 
 main();
