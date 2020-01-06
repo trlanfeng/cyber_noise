@@ -73,7 +73,7 @@ function offset(y, offset_x) {
     const x = Math.abs(offset_x);
     newArray.set(lineData.slice(x * 4));
     // 空位补0
-    newArray.fill(255, (image_width - x) * 4);
+    newArray.fill(0, (image_width - x) * 4);
     var newLineData = new ImageData(newArray, image_width, 1);
     ctx.putImageData(newLineData, 0, y);
   }
