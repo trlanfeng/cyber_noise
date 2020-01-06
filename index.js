@@ -13,7 +13,7 @@ function main() {
     ctx.drawImage(image, 0, 0);
     originImageData = ctx.getImageData(0, 0, 500, 100);
   }
-  image.src = './google.png';
+  image.src = './small.png';
   button1.addEventListener('click', button1_click);
   button2.addEventListener('click', button2_click);
 }
